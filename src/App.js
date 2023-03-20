@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Switch,Routes, Route, Link } from "react-router-dom";
+import { Layout, Typography, Space } from "antd";
+import { Navbar, Homepage, Exchanges , News ,CryptoDetails , Cryptocurrencies } from "./components";
+import './App.css'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="navbar">
+        <Navbar />
+      </div>
+      <div className="main">
+        <Layout>
+            <div className="routes">
+                <Routes>
+                    <Route exact path="/" Component={Homepage} />
+                </Routes>
+                <Routes>
+                    <Route exact path="/exchanges" Component={Exchanges} />
+                </Routes>
+                <Routes>
+                    <Route exact path="/cryptocurrencies" Component={Cryptocurrencies} />
+                </Routes>
+                <Routes>
+                    <Route exact path="/crypto/:coinId" Component={CryptoDetails} />
+                </Routes>
+                <Routes>
+                    <Route exact path="/news" Component={News} />
+                </Routes>
+                    
+            </div>
+        </Layout>
+      
+      <div className="footer">
+        <Typography.Title level={5} style={{color:'white', textAlign:'center'}}>
+            CryptoApp <br/>
+            All rights reserved
+        </Typography.Title>
+        <Space>
+            <Link to="/">Home</Link>
+            <Link to="/exchanges">Exchanges</Link>
+            <Link to="/news">News</Link>
+        </Space>
+      </div>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
